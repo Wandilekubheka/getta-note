@@ -1,0 +1,26 @@
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebase";
+
+const createUserTodoNote = async (
+  title,
+  description,
+  deadline,
+  team,
+  type,
+  subProblem
+) => {
+  const data = {
+    title: title,
+    description: description,
+    deadline: deadline,
+    team: team.length,
+    type: type,
+    subProblem: subProblem.length,
+  };
+  console.log(data);
+
+  const docRef = await addDoc(collection(db, "cities"), data);
+  console.log(docRef.id);
+};
+
+export { createUserTodoNote };
