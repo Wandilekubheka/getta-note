@@ -18,7 +18,6 @@ import TodoCard from "../../../components/todoCard";
 import { auth, db } from "../../../../firebase";
 import {
   collection,
-  doc,
   getDocs,
   onSnapshot,
   query,
@@ -32,16 +31,22 @@ const Home = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // const unsubscribe = () => {
-    const q = query(
-      collection(db, "TodoNotes"),
-      where("team", "==", auth.currentUser.email)
-    );
-    onSnapshot(q, (querySnap) => {
-      setTodo(querySnap.docs.map((doc) => doc.data()));
-    });
+    const unsubscribe = () => {
+      const q = query(
+        collection(db, "TodoNotes"),
+        where("team", "!=", auth.currentUser.email)
+      );
+      onSnapshot(q, (querySnap) => {
+        setTodo(
+          querySnap.docs.map((doc) => {
+            doc.data(), console.log(doc.data());
+          })
+        );
+      });
+    };
+    return unsubscribe;
   }, []);
-
+  console.log(todo);
   return (
     <SafeAreaView className="flex-1 bg-stone-950">
       <View>

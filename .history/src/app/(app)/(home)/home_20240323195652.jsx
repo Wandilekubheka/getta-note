@@ -38,8 +38,21 @@ const Home = () => {
       where("team", "==", auth.currentUser.email)
     );
     onSnapshot(q, (querySnap) => {
-      setTodo(querySnap.docs.map((doc) => doc.data()));
+      querySnap.docs.map((doc) => console.log(doc.data()));
     });
+    // getDocs(q).then((docs) =>
+    //   docs.forEach((doc) => {
+    //     console.log(doc.data());
+    //   })
+    // );
+    // doc.data() is never undefined for query doc snapshots
+    // onSnapshot(q, (querySnap) => {
+    //   querySnap.docs.forEach((doc) => console.log(doc.data()));
+    // });
+    // };
+    // console.log(todo);
+
+    // return unsubscribe;
   }, []);
 
   return (

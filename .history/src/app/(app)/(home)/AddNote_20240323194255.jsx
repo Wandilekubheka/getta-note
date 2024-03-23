@@ -11,10 +11,8 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { auth, db } from "../../../../firebase";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { addDoc, collection } from "firebase/firestore";
-import { useRouter } from "expo-router";
 
 const AddNote = () => {
-  const router = useRouter();
   const [title, setTitle] = useState("");
   const [deadline, setDeadline] = useState("");
   const [description, setDescription] = useState("");
@@ -71,9 +69,7 @@ const AddNote = () => {
       subProblem: subProblem.length,
       subProblemCompleted: 0,
     };
-    const docRef = await addDoc(collection(db, "TodoNotes"), data)
-      .then(router.back)
-      .catch((err) => Alert.alert(err.message));
+    const docRef = await addDoc(collection(db, "TodoNotes"), data);
   };
 
   return (

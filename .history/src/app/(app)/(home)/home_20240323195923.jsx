@@ -41,6 +41,7 @@ const Home = () => {
       setTodo(querySnap.docs.map((doc) => doc.data()));
     });
   }, []);
+  console.log(todo);
 
   return (
     <SafeAreaView className="flex-1 bg-stone-950">

@@ -16,14 +16,7 @@ import FilterButtons from "../../../components/filterButtons";
 import { Link, useRouter } from "expo-router";
 import TodoCard from "../../../components/todoCard";
 import { auth, db } from "../../../../firebase";
-import {
-  collection,
-  doc,
-  getDocs,
-  onSnapshot,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { FontAwesome6 } from "@expo/vector-icons";
 
 const Home = () => {
@@ -32,14 +25,18 @@ const Home = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // const unsubscribe = () => {
-    const q = query(
-      collection(db, "TodoNotes"),
-      where("team", "==", auth.currentUser.email)
-    );
-    onSnapshot(q, (querySnap) => {
-      setTodo(querySnap.docs.map((doc) => doc.data()));
-    });
+    const unsubscribe = () => {
+      const q = query(
+        collection(db, "TodoNotes"),
+        where("team", "==", auth.currentUser.email)
+      );
+      onSnapshot(q, (querySnap) => {
+        querySnap.docs.forEach((doc) => console.log(doc.data()));
+      });
+    };
+    // console.log(todo);
+
+    return unsubscribe;
   }, []);
 
   return (

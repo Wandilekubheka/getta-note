@@ -32,14 +32,24 @@ const Home = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // const unsubscribe = () => {
-    const q = query(
-      collection(db, "TodoNotes"),
-      where("team", "==", auth.currentUser.email)
-    );
-    onSnapshot(q, (querySnap) => {
-      setTodo(querySnap.docs.map((doc) => doc.data()));
-    });
+    const unsubscribe = () => {
+      const q = query(
+        collection(db, "TodoNotes"),
+        where("team", "!=", auth.currentUser.email)
+      );
+      getDocs(q).then((docs) =>
+        docs.forEach((doc) => {
+          console.log(doc);
+        })
+      );
+      // doc.data() is never undefined for query doc snapshots
+      // onSnapshot(q, (querySnap) => {
+      //   querySnap.docs.forEach((doc) => console.log(doc.data()));
+      // });
+    };
+    // console.log(todo);
+
+    return unsubscribe;
   }, []);
 
   return (

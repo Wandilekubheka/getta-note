@@ -38,8 +38,9 @@ const Home = () => {
       where("team", "==", auth.currentUser.email)
     );
     onSnapshot(q, (querySnap) => {
-      setTodo(querySnap.docs.map((doc) => doc.data()));
+      setTodo(querySnap.docs.map((doc) => console.log(doc.data())));
     });
+    console.log(todo);
   }, []);
 
   return (
