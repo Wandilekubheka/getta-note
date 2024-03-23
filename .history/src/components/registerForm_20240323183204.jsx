@@ -25,7 +25,7 @@ const RegisterForm = () => {
     else Alert.alert("enter proper values...");
   };
   return (
-    <Animated.View entering={FadeInRight} className=" w-full items-center">
+    <Animated.View className=" w-full items-center">
       <Input
         inputStyle={{ fontFamily: "Sofia", color: "white" }}
         onChangeText={setFullName}

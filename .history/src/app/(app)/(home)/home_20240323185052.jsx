@@ -48,13 +48,12 @@ const Home = () => {
     <SafeAreaView className="flex-1 bg-stone-950">
       <View>
         <View className="flex-row self-end m-8">
-          {/* {auth.currentUser.photoURL? } */}
           <TouchableOpacity
             onPress={() => router.push("userProfile")}
-            className=" bg-neutral-900 rounded-full"
+            className=" bg-neutral-900  p-3 rounded-full"
           >
             <Image
-              style={{ width: 40, height: 40, borderRadius: 999 }}
+              style={{ width: 25, height: 25 }}
               source={{ uri: auth.currentUser.photoURL }}
             />
           </TouchableOpacity>

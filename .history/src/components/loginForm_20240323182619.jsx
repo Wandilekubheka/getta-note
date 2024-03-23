@@ -5,7 +5,6 @@ import { Input } from "@rneui/base";
 import { Button } from "@rneui/themed";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-import Animated, { FadeInLeft } from "react-native-reanimated";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -17,7 +16,7 @@ const LoginForm = () => {
     });
   };
   return (
-    <Animated.View entering={FadeInLeft} className=" w-full items-center">
+    <View className=" w-full items-center">
       <Input
         inputStyle={{ fontFamily: "Sofia", color: "white" }}
         onChangeText={setEmail}
@@ -44,7 +43,7 @@ const LoginForm = () => {
         title={"Login"}
       />
       <Button type="clear" title={"Forgot Password"} />
-    </Animated.View>
+    </View>
   );
 };
 

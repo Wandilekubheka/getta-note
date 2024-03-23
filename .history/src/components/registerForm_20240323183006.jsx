@@ -5,7 +5,7 @@ import { Button } from "@rneui/themed";
 import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-import Animated, { FadeInRight } from "react-native-reanimated";
+
 const RegisterForm = () => {
   const [fullName, setFullName] = useState("");
 
@@ -25,7 +25,7 @@ const RegisterForm = () => {
     else Alert.alert("enter proper values...");
   };
   return (
-    <Animated.View entering={FadeInRight} className=" w-full items-center">
+    <View className=" w-full items-center">
       <Input
         inputStyle={{ fontFamily: "Sofia", color: "white" }}
         onChangeText={setFullName}
@@ -59,7 +59,7 @@ const RegisterForm = () => {
         titleStyle={{ fontFamily: "SofiaBold", fontSize: 24 }}
         title={"Register"}
       />
-    </Animated.View>
+    </View>
   );
 };
 

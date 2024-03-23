@@ -17,10 +17,9 @@ const UserProfile = () => {
   const [image, setImage] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, SetConfirmPassword] = useState("");
-  const user = auth.currentUser;
 
   const updateUserProfile = (image) => {
-    updateProfile(user, {
+    updateProfile(auth.currentUser, {
       photoURL: image,
     })
       .then(console.log("updated"))
@@ -37,9 +36,8 @@ const UserProfile = () => {
     });
 
     if (!result.canceled) {
-      console.log(result.assets[0].uri);
       setImage(result.assets[0].uri);
-      updateUserProfile(result.assets[0].uri);
+      updateUserProfile(image);
       console.log(auth.currentUser.photoURL);
     }
   };

@@ -54,7 +54,7 @@ const Home = () => {
             className=" bg-neutral-900 rounded-full"
           >
             <Image
-              style={{ width: 40, height: 40, borderRadius: 999 }}
+              style={{ width: 40, height: 40 }}
               source={{ uri: auth.currentUser.photoURL }}
             />
           </TouchableOpacity>
