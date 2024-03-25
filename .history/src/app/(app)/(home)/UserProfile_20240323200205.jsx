@@ -1,4 +1,11 @@
-import { Text, View, TouchableOpacity, TextInput, Alert } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput,
+  Alert,
+} from "react-native";
 import React, { useState } from "react";
 import { Image } from "react-native";
 import { auth } from "../../../../firebase";
@@ -21,6 +28,7 @@ const UserProfile = () => {
   };
 
   const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,

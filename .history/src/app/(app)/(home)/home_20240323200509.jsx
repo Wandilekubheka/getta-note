@@ -16,20 +16,22 @@ import TodoCard from "../../../components/todoCard";
 import { auth, db } from "../../../../firebase";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { FontAwesome6 } from "@expo/vector-icons";
-import { useNotesStore } from "../../../features/Notes";
 
 const Home = () => {
   const [todo, setTodo] = useState([]);
-  const allTodo = useNotesStore((state) => state.notes);
-  const updateNotes = useNotesStore((state) => state.fetchNotesFromDatabase);
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const router = useRouter();
 
   useEffect(() => {
-    updateNotes(auth.currentUser.email);
-    setTodo(allTodo);
+    // const unsubscribe = () => {
+    const q = query(
+      collection(db, "TodoNotes"),
+      where("team", "==", auth.currentUser.email)
+    );
+    onSnapshot(q, (querySnap) => {
+      setTodo(querySnap.docs.map((doc) => doc.data()));
+    });
   }, []);
-  console.log(todo);
 
   return (
     <SafeAreaView className="flex-1 bg-stone-950">
@@ -51,7 +53,6 @@ const Home = () => {
       <Text className="text-white ml-7 mb-2" style={{ fontFamily: "Sofia" }}>
         All Notes
       </Text>
-
       {todo.length > 0 ? (
         <ScrollView className="mx-5">
           {todo.map((item) => (
@@ -69,6 +70,7 @@ const Home = () => {
             marginTop: 30,
           }}
         >
+          <Text>sadad</Text>
           <Image
             style={{ width: "100%", height: "100%", resizeMode: "contain" }}
             source={require("../../../assets/images/nonotes.png")}

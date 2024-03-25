@@ -1,3 +1,4 @@
+import { StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { Input } from "@rneui/base";
@@ -48,3 +49,5 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
+const styles = StyleSheet.create({});

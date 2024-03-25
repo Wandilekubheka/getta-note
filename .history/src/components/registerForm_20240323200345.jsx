@@ -1,4 +1,4 @@
-import { Alert } from "react-native";
+import { Alert, Text, View } from "react-native";
 import { useState } from "react";
 import { Input } from "@rneui/base";
 import { Button } from "@rneui/themed";

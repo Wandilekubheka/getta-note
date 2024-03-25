@@ -19,15 +19,13 @@ import { FontAwesome6 } from "@expo/vector-icons";
 import { useNotesStore } from "../../../features/Notes";
 
 const Home = () => {
-  const [todo, setTodo] = useState([]);
-  const allTodo = useNotesStore((state) => state.notes);
+  const todo = useNotesStore((state) => state.notes);
   const updateNotes = useNotesStore((state) => state.fetchNotesFromDatabase);
   const { width } = useWindowDimensions();
   const router = useRouter();
 
   useEffect(() => {
     updateNotes(auth.currentUser.email);
-    setTodo(allTodo);
   }, []);
   console.log(todo);
 

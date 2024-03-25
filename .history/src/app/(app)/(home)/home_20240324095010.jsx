@@ -20,16 +20,16 @@ import { useNotesStore } from "../../../features/Notes";
 
 const Home = () => {
   const [todo, setTodo] = useState([]);
-  const allTodo = useNotesStore((state) => state.notes);
+  const todo_ = useNotesStore((state) => state.notes);
   const updateNotes = useNotesStore((state) => state.fetchNotesFromDatabase);
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const router = useRouter();
 
   useEffect(() => {
     updateNotes(auth.currentUser.email);
-    setTodo(allTodo);
+    setTodo(todo_);
   }, []);
-  console.log(todo);
+  console.log(todo_);
 
   return (
     <SafeAreaView className="flex-1 bg-stone-950">
