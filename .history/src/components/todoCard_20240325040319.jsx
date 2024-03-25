@@ -31,11 +31,7 @@ const TodoCard = ({ todo }) => {
   const tintColor = getColor();
 
   return (
-    <TouchableOpacity
-      onPress={() => router.navigate("viewNote")}
-      activeOpacity={0.05}
-      style={styles.container}
-    >
+    <TouchableOpacity activeOpacity={0.05} style={styles.container}>
       <View style={styles.leftContainer}>
         <Text style={styles.heading}>{todo.type}</Text>
         <Text style={[styles.text, { fontFamily: "SofiaLight" }]}>

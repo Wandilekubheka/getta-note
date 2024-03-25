@@ -32,7 +32,7 @@ const TodoCard = ({ todo }) => {
 
   return (
     <TouchableOpacity
-      onPress={() => router.navigate("viewNote")}
+      onPress={() => router.navigate("addNote")}
       activeOpacity={0.05}
       style={styles.container}
     >
