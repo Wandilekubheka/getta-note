@@ -1,0 +1,31 @@
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+
+const ViewNote = () => {
+  return (
+    <View>
+      <View style={styles.header}>
+        <Text style={styles.MainSliceText}>
+          This is a random title of the problem i slided but never had lol.
+        </Text>
+        <Text style={styles.subHeader}>due: 27 March 2024</Text>
+      </View>
+      <View>
+        <Text style={styles.mainHeading}></Text>
+      </View>
+    </View>
+  );
+};
+
+export default ViewNote;
+
+const styles = StyleSheet.create({
+  header: {
+    paddingHorizontal: 40,
+  },
+  MainSliceText: {
+    color: "#D4C3C3",
+    fontFamily: "SofiaBold",
+    fontSize: 20,
+  },
+});
