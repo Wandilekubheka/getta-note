@@ -1,35 +1,16 @@
-import { Alert, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { Button, ListItem } from "@rneui/themed";
-import {
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  query,
-  setDoc,
-  where,
-} from "firebase/firestore";
-import { useRouter } from "expo-router";
-import { auth, db } from "../../firebase";
-const SliceCard = ({ note, main, uid }) => {
-  const docRef = doc(db, auth.currentUser.uid, uid);
-  const route = useRouter();
+import { deleteDoc, doc, getDoc } from "firebase/firestore";
+const SliceCard = ({ note, main, docRef }) => {
   const deleteNote = async () => {
     if (main) {
       getDoc(docRef).then((doc) => {
-        if (doc.exists()) {
-          deleteDoc(docRef).then(() => {
-            const docSummaryRef = query(
-              collection(db, "TodoNotes", where("time", "==", uid))
-            );
-            deleteDoc(docSummaryRef);
-          });
-        } else {
+        if (doc.exists()) deleteDoc(docRef);
+        else {
           Alert.alert("Note Not Found");
+          router.back();
         }
-        route.replace("/home");
       });
-    } else {
     }
   };
   return (

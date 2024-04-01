@@ -6,7 +6,6 @@ import {
   doc,
   getDoc,
   query,
-  setDoc,
   where,
 } from "firebase/firestore";
 import { useRouter } from "expo-router";
@@ -19,10 +18,7 @@ const SliceCard = ({ note, main, uid }) => {
       getDoc(docRef).then((doc) => {
         if (doc.exists()) {
           deleteDoc(docRef).then(() => {
-            const docSummaryRef = query(
-              collection(db, "TodoNotes", where("time", "==", uid))
-            );
-            deleteDoc(docSummaryRef);
+            query(collection(db, "TodoNotes", where("time", "==", uid)));
           });
         } else {
           Alert.alert("Note Not Found");

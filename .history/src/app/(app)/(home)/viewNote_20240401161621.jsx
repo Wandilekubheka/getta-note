@@ -1,7 +1,11 @@
 import { StyleSheet, Text, View, ScrollView, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import SliceCard from "../../../components/sliceCard";
-import { useGlobalSearchParams, useRouter } from "expo-router";
+import {
+  useGlobalSearchParams,
+  useLocalSearchParams,
+  useRouter,
+} from "expo-router";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../../../firebase";
 import dayjs from "dayjs";
@@ -36,14 +40,14 @@ const ViewNote = () => {
           <View className="mt-8">
             <Text style={styles.mainHeading}>Sub Tasks</Text>
             <ScrollView style={{ paddingHorizontal: 30 }}>
-              <SliceCard note={note.description} main={true} docRef={docRef} />
+              <SliceCard note={note.description} main={true} />
               {note.subProblem.length > 0 &&
                 note.subProblem.map((problem, index) => (
                   <SliceCard
                     note={problem}
                     key={index}
                     main={false}
-                    docRef={docRef}
+                    docRef={uid}
                   />
                 ))}
             </ScrollView>

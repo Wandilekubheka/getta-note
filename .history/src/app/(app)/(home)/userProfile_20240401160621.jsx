@@ -15,7 +15,9 @@ const UserProfile = () => {
   const updateUserProfile = (image) => {
     updateProfile(user, {
       photoURL: image,
-    }).catch((err) => Alert.alert(err.message));
+    })
+      .then(console.log("updated"))
+      .catch((err) => Alert.alert(err.message));
   };
 
   const pickImage = async () => {
@@ -27,8 +29,10 @@ const UserProfile = () => {
     });
 
     if (!result.canceled) {
+      console.log(result.assets[0].uri);
       setImage(result.assets[0].uri);
       updateUserProfile(result.assets[0].uri);
+      console.log(auth.currentUser.photoURL);
     }
   };
 

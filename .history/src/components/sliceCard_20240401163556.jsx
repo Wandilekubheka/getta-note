@@ -1,14 +1,6 @@
 import { Alert, StyleSheet } from "react-native";
 import { Button, ListItem } from "@rneui/themed";
-import {
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  query,
-  setDoc,
-  where,
-} from "firebase/firestore";
+import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import { useRouter } from "expo-router";
 import { auth, db } from "../../firebase";
 const SliceCard = ({ note, main, uid }) => {
@@ -18,12 +10,7 @@ const SliceCard = ({ note, main, uid }) => {
     if (main) {
       getDoc(docRef).then((doc) => {
         if (doc.exists()) {
-          deleteDoc(docRef).then(() => {
-            const docSummaryRef = query(
-              collection(db, "TodoNotes", where("time", "==", uid))
-            );
-            deleteDoc(docSummaryRef);
-          });
+          deleteDoc(docRef).then(() => {});
         } else {
           Alert.alert("Note Not Found");
         }
