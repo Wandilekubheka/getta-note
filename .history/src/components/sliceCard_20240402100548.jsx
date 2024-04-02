@@ -14,9 +14,8 @@ import { auth, db } from "../../firebase";
 const SliceCard = ({ note, main, uid }) => {
   const route = useRouter();
   const deleteNote = async () => {
+    console.log("pressed");
     const docRef = doc(db, auth.currentUser.uid, uid);
-    console.log(docRef);
-
     console.log(docRef);
     getDoc(docRef).then((doc) => {
       if (doc.exists()) {

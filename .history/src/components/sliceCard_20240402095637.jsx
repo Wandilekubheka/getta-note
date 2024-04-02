@@ -15,9 +15,6 @@ const SliceCard = ({ note, main, uid }) => {
   const route = useRouter();
   const deleteNote = async () => {
     const docRef = doc(db, auth.currentUser.uid, uid);
-    console.log(docRef);
-
-    console.log(docRef);
     getDoc(docRef).then((doc) => {
       if (doc.exists()) {
         if (main) {
@@ -25,18 +22,18 @@ const SliceCard = ({ note, main, uid }) => {
             const docSummaryRef = query(
               collection(db, "TodoNotes", where("time", "==", uid))
             );
-            console.log(docSummaryRef);
             deleteDoc(docSummaryRef);
           });
-        } else {
-          let data = doc.data();
-          data.subProblem = data.subProblem.filter((value) => value !== note);
-          setDoc(docRef, data);
         }
-      } else {
-        Alert.alert("Note Not Found");
         route.replace("/home");
-      }
+      } else {
+        setDoc(docRef, () =>
+          doc.data().subProblem.filter((value) => value !== note)
+        );
+      } else {
+          console.log(main);
+          Alert.alert("Note Not Found");
+        }
     });
   };
   return (

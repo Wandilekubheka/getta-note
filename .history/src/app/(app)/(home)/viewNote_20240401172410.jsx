@@ -35,7 +35,7 @@ const ViewNote = () => {
           </View>
           <View className="mt-8">
             <Text style={styles.mainHeading}>Sub Tasks</Text>
-            <ScrollView style={{ paddingHorizontal: 30 }}>
+            {/* <ScrollView style={{ paddingHorizontal: 30 }}>
               <SliceCard note={note.description} main={true} docRef={docRef} />
               {note.subProblem.length > 0 &&
                 note.subProblem.map((problem, index) => (
@@ -43,10 +43,10 @@ const ViewNote = () => {
                     note={problem}
                     key={index}
                     main={false}
-                    uid={uid}
+                    docRef={docRef}
                   />
                 ))}
-            </ScrollView>
+            </ScrollView> */}
           </View>
         </>
       )}

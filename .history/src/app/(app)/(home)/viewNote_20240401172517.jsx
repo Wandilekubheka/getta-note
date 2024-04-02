@@ -38,12 +38,12 @@ const ViewNote = () => {
             <ScrollView style={{ paddingHorizontal: 30 }}>
               <SliceCard note={note.description} main={true} docRef={docRef} />
               {note.subProblem.length > 0 &&
-                note.subProblem.map((problem, index) => (
+                note.subProblem.map((problem) => (
                   <SliceCard
                     note={problem}
-                    key={index}
+                    // key={index}
                     main={false}
-                    uid={uid}
+                    docRef={docRef}
                   />
                 ))}
             </ScrollView>

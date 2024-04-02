@@ -22,6 +22,7 @@ const ViewNote = () => {
       }
     });
   }, []);
+  console.log(uid);
 
   return (
     <ScrollView style={styles.container}>
@@ -43,7 +44,7 @@ const ViewNote = () => {
                     note={problem}
                     key={index}
                     main={false}
-                    uid={uid}
+                    docRef={uid}
                   />
                 ))}
             </ScrollView>

@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import dayjs from "dayjs";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
 const TodoCard = ({ todo }) => {
   const percentComplete = () => {

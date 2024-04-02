@@ -15,9 +15,6 @@ const SliceCard = ({ note, main, uid }) => {
   const route = useRouter();
   const deleteNote = async () => {
     const docRef = doc(db, auth.currentUser.uid, uid);
-    console.log(docRef);
-
-    console.log(docRef);
     getDoc(docRef).then((doc) => {
       if (doc.exists()) {
         if (main) {
@@ -25,7 +22,8 @@ const SliceCard = ({ note, main, uid }) => {
             const docSummaryRef = query(
               collection(db, "TodoNotes", where("time", "==", uid))
             );
-            console.log(docSummaryRef);
+            console.log();
+            docSummaryRef;
             deleteDoc(docSummaryRef);
           });
         } else {

@@ -10,6 +10,7 @@ const ViewNote = () => {
   const { uid } = useGlobalSearchParams();
   const [note, setNote] = useState(null);
   const docRef = doc(db, auth.currentUser.uid, uid);
+  const another = uid;
 
   const router = useRouter();
 
@@ -40,10 +41,10 @@ const ViewNote = () => {
               {note.subProblem.length > 0 &&
                 note.subProblem.map((problem, index) => (
                   <SliceCard
-                    note={problem}
+                    note={another}
                     key={index}
                     main={false}
-                    uid={uid}
+                    docRef={another}
                   />
                 ))}
             </ScrollView>

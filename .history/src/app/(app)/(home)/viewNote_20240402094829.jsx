@@ -41,9 +41,9 @@ const ViewNote = () => {
                 note.subProblem.map((problem, index) => (
                   <SliceCard
                     note={problem}
-                    key={index}
+                    // key={index}
                     main={false}
-                    uid={uid}
+                    docRef={docRef}
                   />
                 ))}
             </ScrollView>
