@@ -7,7 +7,7 @@ import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import { useRouter } from "expo-router";
 import dayjs from "dayjs";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
-import { ScrollView } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 
 const AddNote = () => {
   const router = useRouter();
@@ -19,12 +19,12 @@ const AddNote = () => {
   const [teamEmail, setTeamEmail] = useState("");
   const [team, setTeam] = useState([auth.currentUser?.email]);
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("Type");
-  const options = [
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
     { label: "Personal", value: "personal" },
     { label: "Work", value: "work" },
     { label: "Team", value: "team" },
-  ];
+  ]);
   const [dateTimeToggled, setDateTimeToggled] = useState(false);
   const time = dayjs().format();
   const formFilled = () => {
@@ -113,41 +113,25 @@ const AddNote = () => {
           >
             type
           </Text>
-          <TouchableOpacity
-            onPress={() => setOpen(!open)}
-            className=" py-3 px-5 border border-neutral-500 rounded-md mt-2"
-          >
-            <Text
-              style={{
-                fontFamily: "SofiaLight",
-                fontSize: 15,
-                color: "#5E5E5E",
-              }}
-            >
-              {value}
-            </Text>
-          </TouchableOpacity>
-          {open &&
-            options.map((option, index) => (
-              <TouchableOpacity
-                onPress={() => {
-                  setValue(option.value);
-                  setOpen(false);
-                }}
-                className=" py-2 px-5 border border-neutral-500 rounded-md mt-2"
-                key={index}
-              >
-                <Text
-                  style={{
-                    fontFamily: "SofiaLight",
-                    fontSize: 15,
-                    color: "#5E5E5E",
-                  }}
-                >
-                  {option.label}
-                </Text>
-              </TouchableOpacity>
-            ))}
+          <DropDownPicker
+            style={{
+              backgroundColor: "transparent",
+              borderWidth: 1,
+              borderColor: "#737373",
+            }}
+            labelStyle={{ color: "#5E5E5E" }}
+            dropDownContainerStyle={{ backgroundColor: "black" }}
+            placeholder=""
+            open={open}
+            value={value}
+            items={items}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setItems}
+            listItemLabelStyle={{
+              color: "#5E5E5E",
+            }}
+          />
         </View>
         {value === "team" && (
           <View>

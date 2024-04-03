@@ -19,7 +19,7 @@ const AddNote = () => {
   const [teamEmail, setTeamEmail] = useState("");
   const [team, setTeam] = useState([auth.currentUser?.email]);
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("Type");
+  const [value, setValue] = useState(null);
   const options = [
     { label: "Personal", value: "personal" },
     { label: "Work", value: "work" },
@@ -124,29 +124,14 @@ const AddNote = () => {
                 color: "#5E5E5E",
               }}
             >
-              {value}
+              type
             </Text>
           </TouchableOpacity>
           {open &&
-            options.map((option, index) => (
-              <TouchableOpacity
-                onPress={() => {
-                  setValue(option.value);
-                  setOpen(false);
-                }}
-                className=" py-2 px-5 border border-neutral-500 rounded-md mt-2"
-                key={index}
-              >
-                <Text
-                  style={{
-                    fontFamily: "SofiaLight",
-                    fontSize: 15,
-                    color: "#5E5E5E",
-                  }}
-                >
-                  {option.label}
-                </Text>
-              </TouchableOpacity>
+            options.map((option) => (
+              <View>
+                <Text>{option.label}</Text>
+              </View>
             ))}
         </View>
         {value === "team" && (

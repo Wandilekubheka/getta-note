@@ -124,7 +124,7 @@ const AddNote = () => {
                 color: "#5E5E5E",
               }}
             >
-              {value}
+              type
             </Text>
           </TouchableOpacity>
           {open &&

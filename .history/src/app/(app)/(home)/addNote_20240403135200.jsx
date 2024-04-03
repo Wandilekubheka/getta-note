@@ -19,12 +19,12 @@ const AddNote = () => {
   const [teamEmail, setTeamEmail] = useState("");
   const [team, setTeam] = useState([auth.currentUser?.email]);
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("Type");
-  const options = [
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
     { label: "Personal", value: "personal" },
     { label: "Work", value: "work" },
     { label: "Team", value: "team" },
-  ];
+  ]);
   const [dateTimeToggled, setDateTimeToggled] = useState(false);
   const time = dayjs().format();
   const formFilled = () => {
@@ -112,9 +112,9 @@ const AddNote = () => {
             style={{ fontFamily: "Sofia" }}
           >
             type
-          </Text>
+          </Text>{" "}
           <TouchableOpacity
-            onPress={() => setOpen(!open)}
+            onPress={() => setDateTimeToggled(!dateTimeToggled)}
             className=" py-3 px-5 border border-neutral-500 rounded-md mt-2"
           >
             <Text
@@ -124,30 +124,10 @@ const AddNote = () => {
                 color: "#5E5E5E",
               }}
             >
-              {value}
+              Deadline
             </Text>
+
           </TouchableOpacity>
-          {open &&
-            options.map((option, index) => (
-              <TouchableOpacity
-                onPress={() => {
-                  setValue(option.value);
-                  setOpen(false);
-                }}
-                className=" py-2 px-5 border border-neutral-500 rounded-md mt-2"
-                key={index}
-              >
-                <Text
-                  style={{
-                    fontFamily: "SofiaLight",
-                    fontSize: 15,
-                    color: "#5E5E5E",
-                  }}
-                >
-                  {option.label}
-                </Text>
-              </TouchableOpacity>
-            ))}
         </View>
         {value === "team" && (
           <View>

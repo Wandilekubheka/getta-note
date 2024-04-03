@@ -19,7 +19,7 @@ const AddNote = () => {
   const [teamEmail, setTeamEmail] = useState("");
   const [team, setTeam] = useState([auth.currentUser?.email]);
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("Type");
+  const [value, setValue] = useState(null);
   const options = [
     { label: "Personal", value: "personal" },
     { label: "Work", value: "work" },
@@ -124,7 +124,7 @@ const AddNote = () => {
                 color: "#5E5E5E",
               }}
             >
-              {value}
+              type
             </Text>
           </TouchableOpacity>
           {open &&
