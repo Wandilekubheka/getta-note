@@ -1,5 +1,6 @@
 import { Alert, Text, TouchableOpacity, View, TextInput } from "react-native";
 import { useState } from "react";
+import DropDownPicker from "react-native-dropdown-picker";
 import { auth, db } from "../../../../firebase";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { addDoc, collection, doc, setDoc } from "firebase/firestore";
@@ -11,7 +12,7 @@ import { ScrollView } from "react-native";
 const AddNote = () => {
   const router = useRouter();
   const [title, setTitle] = useState("");
-  const [deadline, setDeadline] = useState(null);
+  const [deadline, setDeadline] = useState("");
   const [description, setDescription] = useState("");
   const [subProblem, setSubProblem] = useState("");
   const [subProblems, setSubProblems] = useState([]);
@@ -29,25 +30,24 @@ const AddNote = () => {
   const formFilled = () => {
     if (
       title !== "" &&
-      deadline !== null &&
+      deadline !== "" &&
       description !== "" &&
-      value !== "Type"
+      value !== null
     ) {
       return true;
     }
     return false;
-  };
-  const addToTeam = () => {
-    if (teamEmail.includes("@")) {
-      setTeam(...team, teamEmail);
-      setTeamEmail("");
-    }
   };
 
   const addSubProblem = () => {
     if (subProblem === "") {
       setSubProblem("");
       Alert.alert("Can't add an Empty Sub Problem ");
+      return;
+    }
+    if (!formFilled()) {
+      setSubProblem("");
+      Alert.alert("Please fill in All fields first");
       return;
     }
     setSubProblems([...subProblems, subProblem]);
@@ -154,9 +154,9 @@ const AddNote = () => {
             <Text className=" text-neutral-500" style={{ fontFamily: "Sofia" }}>
               Invite
             </Text>
-            <View className=" px-5 flex-row border border-neutral-500 rounded-md mt-2 justify-between items-center">
+            <View className="flex-row">
               <TextInput
-                className=" py-2  border "
+                className=" py-2  border-neutral-500 rounded-md mt-2"
                 style={{
                   fontFamily: "SofiaLight",
                   fontSize: 15,
@@ -165,10 +165,17 @@ const AddNote = () => {
                 placeholderTextColor={"#5E5E5E"}
                 value={teamEmail}
                 onChangeText={setTeamEmail}
-                placeholder="Enter team mate email address"
+                placeholder="TeamMate email"
               />
-              <TouchableOpacity onPress={addToTeam}>
-                <FontAwesome6 name="add" size={24} color="#262626" />
+              <TouchableOpacity
+                onPress={() => {
+                  if (teamEmail.includes("@")) {
+                    setTeam([...team, teamEmail]);
+                  }
+                }}
+                className="w-15 bg-red-50 h-10 justify-center items-center"
+              >
+                <Text className="  bg-neutral-800 text-5xl text-white">+</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -244,13 +251,9 @@ const AddNote = () => {
         </View>
       </ScrollView>
       <TouchableOpacity
-        onPress={() => {
-          if (formFilled()) {
-            createUserTodoNote(title, deadline, team, value, subProblem);
-          } else {
-            Alert.alert("Please fill in every required field.");
-          }
-        }}
+        onPress={() =>
+          createUserTodoNote(title, deadline, team, value, subProblem)
+        }
         className=" absolute bottom-5 right-5 w-12 h-12 bg-neutral-800 justify-center items-center rounded-md"
       >
         <FontAwesome6 name="check" size={24} color="white" />

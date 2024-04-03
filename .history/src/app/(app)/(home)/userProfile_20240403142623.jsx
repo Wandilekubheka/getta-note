@@ -47,7 +47,7 @@ const UserProfile = () => {
               height: 200,
             }}
             source={{
-              uri: image,
+              uri: user.photoURL,
             }}
           />
           <TouchableOpacity

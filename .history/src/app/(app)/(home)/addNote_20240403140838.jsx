@@ -1,5 +1,6 @@
 import { Alert, Text, TouchableOpacity, View, TextInput } from "react-native";
 import { useState } from "react";
+import DropDownPicker from "react-native-dropdown-picker";
 import { auth, db } from "../../../../firebase";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { addDoc, collection, doc, setDoc } from "firebase/firestore";
@@ -11,7 +12,7 @@ import { ScrollView } from "react-native";
 const AddNote = () => {
   const router = useRouter();
   const [title, setTitle] = useState("");
-  const [deadline, setDeadline] = useState(null);
+  const [deadline, setDeadline] = useState("");
   const [description, setDescription] = useState("");
   const [subProblem, setSubProblem] = useState("");
   const [subProblems, setSubProblems] = useState([]);
@@ -29,25 +30,24 @@ const AddNote = () => {
   const formFilled = () => {
     if (
       title !== "" &&
-      deadline !== null &&
+      deadline !== "" &&
       description !== "" &&
-      value !== "Type"
+      value !== null
     ) {
       return true;
     }
     return false;
-  };
-  const addToTeam = () => {
-    if (teamEmail.includes("@")) {
-      setTeam(...team, teamEmail);
-      setTeamEmail("");
-    }
   };
 
   const addSubProblem = () => {
     if (subProblem === "") {
       setSubProblem("");
       Alert.alert("Can't add an Empty Sub Problem ");
+      return;
+    }
+    if (!formFilled()) {
+      setSubProblem("");
+      Alert.alert("Please fill in All fields first");
       return;
     }
     setSubProblems([...subProblems, subProblem]);
@@ -163,11 +163,11 @@ const AddNote = () => {
                   color: "#5E5E5E",
                 }}
                 placeholderTextColor={"#5E5E5E"}
-                value={teamEmail}
-                onChangeText={setTeamEmail}
-                placeholder="Enter team mate email address"
+                value={subProblem}
+                onChangeText={setSubProblem}
+                placeholder="Add Sub Problems"
               />
-              <TouchableOpacity onPress={addToTeam}>
+              <TouchableOpacity onPress={addSubProblem}>
                 <FontAwesome6 name="add" size={24} color="#262626" />
               </TouchableOpacity>
             </View>
@@ -244,13 +244,9 @@ const AddNote = () => {
         </View>
       </ScrollView>
       <TouchableOpacity
-        onPress={() => {
-          if (formFilled()) {
-            createUserTodoNote(title, deadline, team, value, subProblem);
-          } else {
-            Alert.alert("Please fill in every required field.");
-          }
-        }}
+        onPress={() =>
+          createUserTodoNote(title, deadline, team, value, subProblem)
+        }
         className=" absolute bottom-5 right-5 w-12 h-12 bg-neutral-800 justify-center items-center rounded-md"
       >
         <FontAwesome6 name="check" size={24} color="white" />

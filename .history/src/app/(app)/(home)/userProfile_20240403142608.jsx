@@ -9,7 +9,7 @@ import { updateProfile } from "firebase/auth";
 const UserProfile = () => {
   const user = auth.currentUser;
 
-  const [image, setImage] = useState(user.photoURL);
+  const [image, setImage] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, SetConfirmPassword] = useState("");
 
@@ -47,7 +47,7 @@ const UserProfile = () => {
               height: 200,
             }}
             source={{
-              uri: image,
+              uri: user.photoURL,
             }}
           />
           <TouchableOpacity

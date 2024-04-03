@@ -1,5 +1,6 @@
 import { Alert, Text, TouchableOpacity, View, TextInput } from "react-native";
 import { useState } from "react";
+import DropDownPicker from "react-native-dropdown-picker";
 import { auth, db } from "../../../../firebase";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { addDoc, collection, doc, setDoc } from "firebase/firestore";

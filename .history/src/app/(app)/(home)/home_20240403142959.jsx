@@ -34,7 +34,6 @@ const Home = () => {
     updateNotes(auth.currentUser.email);
   }, [allTodo]);
 
-  useEffect(() => {}, [image]);
   return (
     <SafeAreaView className="flex-1 bg-stone-950 ">
       <View>

@@ -7,11 +7,10 @@ import * as ImagePicker from "expo-image-picker";
 import { updateProfile } from "firebase/auth";
 
 const UserProfile = () => {
-  const user = auth.currentUser;
-
-  const [image, setImage] = useState(user.photoURL);
+  const [image, setImage] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, SetConfirmPassword] = useState("");
+  const user = auth.currentUser;
 
   const updateUserProfile = (image) => {
     updateProfile(user, {
@@ -32,6 +31,7 @@ const UserProfile = () => {
       updateUserProfile(result.assets[0].uri);
     }
   };
+  console.log(auth.currentUser.displayName);
 
   return (
     <View className="flex-1 bg-stone-950 justify-around items-center">
@@ -47,7 +47,7 @@ const UserProfile = () => {
               height: 200,
             }}
             source={{
-              uri: image,
+              uri: user.photoURL,
             }}
           />
           <TouchableOpacity

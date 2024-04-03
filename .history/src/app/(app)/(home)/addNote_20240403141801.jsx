@@ -1,5 +1,6 @@
 import { Alert, Text, TouchableOpacity, View, TextInput } from "react-native";
 import { useState } from "react";
+import DropDownPicker from "react-native-dropdown-picker";
 import { auth, db } from "../../../../firebase";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { addDoc, collection, doc, setDoc } from "firebase/firestore";
@@ -48,6 +49,11 @@ const AddNote = () => {
     if (subProblem === "") {
       setSubProblem("");
       Alert.alert("Can't add an Empty Sub Problem ");
+      return;
+    }
+    if (!formFilled()) {
+      setSubProblem("");
+      Alert.alert("Please fill in All fields first");
       return;
     }
     setSubProblems([...subProblems, subProblem]);
@@ -244,13 +250,9 @@ const AddNote = () => {
         </View>
       </ScrollView>
       <TouchableOpacity
-        onPress={() => {
-          if (formFilled()) {
-            createUserTodoNote(title, deadline, team, value, subProblem);
-          } else {
-            Alert.alert("Please fill in every required field.");
-          }
-        }}
+        onPress={() =>
+          createUserTodoNote(title, deadline, team, value, subProblem)
+        }
         className=" absolute bottom-5 right-5 w-12 h-12 bg-neutral-800 justify-center items-center rounded-md"
       >
         <FontAwesome6 name="check" size={24} color="white" />
