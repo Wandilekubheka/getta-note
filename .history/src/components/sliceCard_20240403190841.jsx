@@ -5,20 +5,17 @@ import {
   deleteDoc,
   doc,
   getDoc,
-  getDocs,
   onSnapshot,
   query,
   setDoc,
-  updateDoc,
   where,
 } from "firebase/firestore";
 import { useRouter } from "expo-router";
 import { db } from "../../firebase";
+import { useEffect } from "react";
 const SliceCard = ({ note, main, uid }) => {
   const route = useRouter();
   const deleteNote = async () => {
-    console.log("i ran again");
-
     const docRef = doc(db, "NotesOverview", uid);
 
     getDoc(docRef).then((doc) => {
@@ -42,20 +39,7 @@ const SliceCard = ({ note, main, uid }) => {
         } else {
           let data = doc.data();
           data.subProblem = data.subProblem.filter((value) => value !== note);
-          setDoc(docRef, data).then(() => {
-            const q = query(
-              collection(db, "TodoNotes"),
-              where("time", "==", uid)
-            );
-            getDocs(q).then((docs) => {
-              docs.docs.map((doc) => {
-                const numberOfCompletedTask = doc.data().subProblemCompleted;
-                updateDoc(doc.ref, {
-                  subProblemCompleted: numberOfCompletedTask + 1,
-                });
-              });
-            });
-          });
+          setDoc(docRef, data);
         }
       } else {
         Alert.alert("Note Not Found");

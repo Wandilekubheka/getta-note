@@ -66,7 +66,7 @@ const AddNote = () => {
       deadline: deadline,
       team: team,
       type: type,
-      subProblem: subProblems.length,
+      subProblem: subProblem.length,
       subProblemCompleted: 0,
       time: time,
     };
@@ -190,7 +190,8 @@ const AddNote = () => {
                   color: "#5E5E5E",
                 }}
               >
-                {deadline}
+                {" "}
+                Deadline
               </Text>
             ) : (
               <Text
@@ -200,7 +201,7 @@ const AddNote = () => {
                   color: "#5E5E5E",
                 }}
               >
-                Deadline
+                deadline
               </Text>
             )}
 
@@ -209,7 +210,7 @@ const AddNote = () => {
                 onChange={(e) => {
                   if (e.type === "set") {
                     setDeadline(
-                      dayjs(e.nativeEvent.timestamp).format("YYYY MMMM DD")
+                      dayjs(e.nativeEvent.timestamp).format("YYYY-MMMM-DD")
                     );
                     setDateTimeToggled(false);
                   }

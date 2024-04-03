@@ -8,7 +8,7 @@ export default function AuthLayout() {
   const router = useRouter();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user !== null) router.replace("/home");
+      if (user !== null) router.replace("(home)/home");
     });
   }, []);
   return (

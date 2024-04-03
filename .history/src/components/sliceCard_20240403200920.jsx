@@ -50,6 +50,7 @@ const SliceCard = ({ note, main, uid }) => {
             getDocs(q).then((docs) => {
               docs.docs.map((doc) => {
                 const numberOfCompletedTask = doc.data().subProblemCompleted;
+                console.log(numberOfCompletedTask);
                 updateDoc(doc.ref, {
                   subProblemCompleted: numberOfCompletedTask + 1,
                 });

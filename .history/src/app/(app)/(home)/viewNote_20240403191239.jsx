@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import SliceCard from "../../../components/sliceCard";
 import { useGlobalSearchParams, useRouter } from "expo-router";
-import { doc, onSnapshot } from "firebase/firestore";
-import { db } from "../../../../firebase";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { auth, db } from "../../../../firebase";
 import dayjs from "dayjs";
 
 const ViewNote = () => {

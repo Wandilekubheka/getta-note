@@ -32,6 +32,7 @@ const Home = () => {
 
   useEffect(() => {
     updateNotes(auth.currentUser.email);
+    console.log(allTodo);
   }, []);
 
   useEffect(() => {}, [image]);
@@ -98,3 +99,5 @@ const Home = () => {
 };
 
 export default Home;
+
+const styles = StyleSheet.create({});

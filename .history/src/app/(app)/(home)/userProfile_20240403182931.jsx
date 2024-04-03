@@ -29,7 +29,9 @@ const UserProfile = () => {
         .then(() => {
           Alert.alert("Password Updated");
         })
-        .catch((err) => Alert.alert(err.message));
+        .catch((err) => 
+          Alert.alert(err);
+        );
     }
   };
 

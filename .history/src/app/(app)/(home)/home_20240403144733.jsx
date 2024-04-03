@@ -32,9 +32,10 @@ const Home = () => {
 
   useEffect(() => {
     updateNotes(auth.currentUser.email);
+    console.log(allTodo);
   }, []);
 
-  useEffect(() => {}, [image]);
+  // useEffect(() => {}, [image]);
   return (
     <SafeAreaView className="flex-1 bg-stone-950 ">
       <View>
@@ -98,3 +99,5 @@ const Home = () => {
 };
 
 export default Home;
+
+const styles = StyleSheet.create({});

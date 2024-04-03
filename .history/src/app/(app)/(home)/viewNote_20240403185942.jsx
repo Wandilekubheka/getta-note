@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import SliceCard from "../../../components/sliceCard";
 import { useGlobalSearchParams, useRouter } from "expo-router";
-import { doc, onSnapshot } from "firebase/firestore";
-import { db } from "../../../../firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { auth, db } from "../../../../firebase";
 import dayjs from "dayjs";
 
 const ViewNote = () => {
@@ -14,9 +14,10 @@ const ViewNote = () => {
   const router = useRouter();
 
   useEffect(() => {
-    onSnapshot(docRef, (doc) => {
+    getDoc(docRef).then((doc) => {
       if (doc.exists()) setNote(doc.data());
       else {
+        Alert.alert("Note Not Found");
         router.back();
       }
     });

@@ -66,7 +66,7 @@ const AddNote = () => {
       deadline: deadline,
       team: team,
       type: type,
-      subProblem: subProblems.length,
+      subProblem: subProblem.length,
       subProblemCompleted: 0,
       time: time,
     };

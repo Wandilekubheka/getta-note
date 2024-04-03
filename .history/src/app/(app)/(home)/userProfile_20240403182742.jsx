@@ -29,7 +29,9 @@ const UserProfile = () => {
         .then(() => {
           Alert.alert("Password Updated");
         })
-        .catch((err) => Alert.alert(err.message));
+        .catch((err) => {
+          Alert.alert(err);
+        });
     }
   };
 
@@ -96,7 +98,6 @@ const UserProfile = () => {
             value={password}
             onChangeText={setPassword}
             placeholder="New Password"
-            secureTextEntry
           />
           <Ionicons name="lock-closed" size={20} color="#AFAFAF" />
         </View>
@@ -113,7 +114,6 @@ const UserProfile = () => {
             value={confirmPassword}
             onChangeText={SetConfirmPassword}
             placeholder="Confirm password"
-            secureTextEntry
           />
           <Ionicons name="lock-closed" size={20} color="#AFAFAF" />
         </View>
@@ -125,7 +125,6 @@ const UserProfile = () => {
               paddingHorizontal: 21,
             }}
             className=" rounded-md"
-            onPress={updateUserPassword}
           >
             <Text
               style={{ color: "#FF0A0A", fontFamily: "Sofia", fontSize: 15 }}

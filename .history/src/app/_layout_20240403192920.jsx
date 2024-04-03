@@ -1,5 +1,7 @@
-import { Slot } from "expo-router";
+import { Slot, SplashScreen } from "expo-router";
 import { useFonts } from "expo-font";
+import { useCallback } from "react";
+import { StatusBar } from "expo-status-bar";
 
 export default function appLayout() {
   const [fontsLoaded, fontError] = useFonts({

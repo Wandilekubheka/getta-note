@@ -32,9 +32,9 @@ const Home = () => {
 
   useEffect(() => {
     updateNotes(auth.currentUser.email);
-  }, []);
+  }, [allTodo]);
 
-  useEffect(() => {}, [image]);
+  // useEffect(() => {}, [image]);
   return (
     <SafeAreaView className="flex-1 bg-stone-950 ">
       <View>
@@ -45,7 +45,7 @@ const Home = () => {
           >
             <Image
               style={{ width: 40, height: 40, borderRadius: 999 }}
-              source={{ uri: image }}
+              source={{ uri: auth.currentUser.photoURL }}
             />
           </TouchableOpacity>
         </View>
@@ -98,3 +98,5 @@ const Home = () => {
 };
 
 export default Home;
+
+const styles = StyleSheet.create({});

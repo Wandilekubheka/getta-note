@@ -5,7 +5,6 @@ import {
   deleteDoc,
   doc,
   getDoc,
-  getDocs,
   onSnapshot,
   query,
   setDoc,
@@ -17,8 +16,6 @@ import { db } from "../../firebase";
 const SliceCard = ({ note, main, uid }) => {
   const route = useRouter();
   const deleteNote = async () => {
-    console.log("i ran again");
-
     const docRef = doc(db, "NotesOverview", uid);
 
     getDoc(docRef).then((doc) => {
@@ -47,13 +44,16 @@ const SliceCard = ({ note, main, uid }) => {
               collection(db, "TodoNotes"),
               where("time", "==", uid)
             );
-            getDocs(q).then((docs) => {
-              docs.docs.map((doc) => {
-                const numberOfCompletedTask = doc.data().subProblemCompleted;
-                updateDoc(doc.ref, {
-                  subProblemCompleted: numberOfCompletedTask + 1,
-                });
-              });
+            onSnapshot(q, (querySnap) => {
+              const daDoc = querySnap.docs[0];
+              const numberOfCompletedTask = daDoc.data().subProblemCompleted;
+              console.log(numberOfCompletedTask);
+
+              if (daDoc !== undefined) {
+                updateDoc(daDoc.ref, { subProblemCompleted: 1 });
+              } else {
+                route.back();
+              }
             });
           });
         }

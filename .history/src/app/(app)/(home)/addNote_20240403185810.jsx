@@ -66,7 +66,7 @@ const AddNote = () => {
       deadline: deadline,
       team: team,
       type: type,
-      subProblem: subProblems.length,
+      subProblem: subProblem.length,
       subProblemCompleted: 0,
       time: time,
     };
@@ -77,7 +77,6 @@ const AddNote = () => {
           description: description,
           subProblem: subProblems,
           deadline: deadline,
-          team: team,
         })
           .then(() => {
             router.back();
@@ -182,35 +181,20 @@ const AddNote = () => {
             onPress={() => setDateTimeToggled(!dateTimeToggled)}
             className=" py-3 px-5 border border-neutral-500 rounded-md mt-2"
           >
-            {deadline ? (
-              <Text
-                style={{
-                  fontFamily: "SofiaLight",
-                  fontSize: 15,
-                  color: "#5E5E5E",
-                }}
-              >
-                {deadline}
-              </Text>
-            ) : (
-              <Text
-                style={{
-                  fontFamily: "SofiaLight",
-                  fontSize: 15,
-                  color: "#5E5E5E",
-                }}
-              >
-                Deadline
-              </Text>
-            )}
-
+            <Text
+              style={{
+                fontFamily: "SofiaLight",
+                fontSize: 15,
+                color: "#5E5E5E",
+              }}
+            >
+              Deadline
+            </Text>
             {dateTimeToggled && (
               <RNDateTimePicker
                 onChange={(e) => {
                   if (e.type === "set") {
-                    setDeadline(
-                      dayjs(e.nativeEvent.timestamp).format("YYYY MMMM DD")
-                    );
+                    setDeadline(dayjs(e.nativeEvent.timestamp).format());
                     setDateTimeToggled(false);
                   }
                 }}
