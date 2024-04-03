@@ -1,3 +1,5 @@
+import { SearchBar } from "@rneui/themed";
+import { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useSearchStore } from "../features/Notes";

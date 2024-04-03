@@ -5,7 +5,6 @@ import {
   deleteDoc,
   doc,
   getDoc,
-  onSnapshot,
   query,
   setDoc,
   where,
@@ -15,21 +14,19 @@ import { auth, db } from "../../firebase";
 const SliceCard = ({ note, main, uid }) => {
   const route = useRouter();
   const deleteNote = async () => {
-    const docRef = doc(db, auth.currentUser.uid, uid);
+    const docRef = await doc(db, auth.currentUser.uid, uid);
 
     getDoc(docRef).then((doc) => {
       if (doc.exists()) {
         if (main) {
           deleteDoc(docRef).then(() => {
-            const q = query(
-              collection(db, "TodoNotes"),
-              where("time", "==", uid)
+            const docSummaryRef = query(
+              collection(db, "TodoNotes", where("time", "==", uid))
             );
-            onSnapshot(q, (querySnap) => {
-              querySnap.docs.map((doc_) => {
-                deleteDoc(doc_.ref).then(() => route.push("/home"));
-              });
-            });
+            console.log(docSummaryRef);
+            deleteDoc(docSummaryRef)
+              .then(() => route.back())
+              .catch((err) => Alert.alert(err));
           });
         } else {
           let data = doc.data();

@@ -5,14 +5,14 @@ import FilterButton from "./filterButton";
 import { useFilterStore } from "../features/Notes";
 
 const FilterButtons = () => {
+  const [active, setActive] = useState("all");
   const changeFilter = useFilterStore((state) => state.changeFilter);
   const filter = useFilterStore((state) => state.filter);
-  const [active, setActive] = useState(filter);
 
   useEffect(() => {
     changeFilter(active);
+    console.log(filter);
   }, [active]);
-
   return (
     <View className="flex-row justify-evenly my-8">
       <TouchableOpacity

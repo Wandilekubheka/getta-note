@@ -12,6 +12,7 @@ const FilterButtons = () => {
   useEffect(() => {
     changeFilter(active);
   }, [active]);
+    console.log(filter);
 
   return (
     <View className="flex-row justify-evenly my-8">

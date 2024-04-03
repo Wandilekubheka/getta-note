@@ -26,8 +26,8 @@ const SliceCard = ({ note, main, uid }) => {
               where("time", "==", uid)
             );
             onSnapshot(q, (querySnap) => {
-              querySnap.docs.map((doc_) => {
-                deleteDoc(doc_.ref).then(() => route.push("/home"));
+              querySnap.docs.map((doc) => {
+                deleteDoc(doc.ref).then(() => route.push("/home"));
               });
             });
           });

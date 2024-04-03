@@ -20,9 +20,9 @@ const useFilterStore = create((set) => ({
 }));
 const useSearchStore = create((set) => ({
   search: "",
-  changeSearch: (search_) => {
+  changeFilter: (search_) => {
     set({ search: search_ });
   },
 }));
 
-export { useNotesStore, useFilterStore, useSearchStore };
+export { useNotesStore, useFilterStore };

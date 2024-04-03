@@ -1,29 +1,13 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import FilterButton from "./filterButton";
-import { useFilterStore } from "../features/Notes";
 
 const FilterButtons = () => {
-  const changeFilter = useFilterStore((state) => state.changeFilter);
-  const filter = useFilterStore((state) => state.filter);
-  const [active, setActive] = useState(filter);
-
-  useEffect(() => {
-    changeFilter(active);
-  }, [active]);
-
+  const [active, setActive] = useState("personal");
   return (
     <View className="flex-row justify-evenly my-8">
-      <TouchableOpacity
-        onPress={() => {
-          if (active === "personal") {
-            setActive("all");
-          } else {
-            setActive("personal");
-          }
-        }}
-      >
+      <TouchableOpacity>
         <FilterButton
           active={active}
           name="personal"
@@ -41,15 +25,7 @@ const FilterButtons = () => {
           }
         />
       </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          if (active === "work") {
-            setActive("all");
-          } else {
-            setActive("work");
-          }
-        }}
-      >
+      <TouchableOpacity>
         <FilterButton
           active={active}
           name="work"
@@ -65,18 +41,10 @@ const FilterButtons = () => {
           }
         />
       </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          if (active === "team") {
-            setActive("team");
-          } else {
-            setActive("team");
-          }
-        }}
-      >
+      <TouchableOpacity>
         <FilterButton
           active={active}
-          name="team"
+          name="work"
           bgcolor={"rgba(54,217,79,0.1)"}
           icon={
             <Ionicons

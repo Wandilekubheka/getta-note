@@ -5,7 +5,6 @@ import {
   deleteDoc,
   doc,
   getDoc,
-  onSnapshot,
   query,
   setDoc,
   where,
@@ -16,7 +15,9 @@ const SliceCard = ({ note, main, uid }) => {
   const route = useRouter();
   const deleteNote = async () => {
     const docRef = doc(db, auth.currentUser.uid, uid);
+    console.log(docRef);
 
+    console.log(docRef);
     getDoc(docRef).then((doc) => {
       if (doc.exists()) {
         if (main) {
@@ -26,10 +27,11 @@ const SliceCard = ({ note, main, uid }) => {
               where("time", "==", uid)
             );
             onSnapshot(q, (querySnap) => {
-              querySnap.docs.map((doc_) => {
-                deleteDoc(doc_.ref).then(() => route.push("/home"));
+              querySnap.docs.map((doc) => {
+                deleteDoc(doc.ref);
               });
             });
+            route.back();
           });
         } else {
           let data = doc.data();

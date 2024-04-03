@@ -15,19 +15,14 @@ import { Link, useRouter } from "expo-router";
 import TodoCard from "../../../components/todoCard";
 import { auth } from "../../../../firebase";
 import { FontAwesome6 } from "@expo/vector-icons";
-import {
-  useFilterStore,
-  useNotesStore,
-  useSearchStore,
-} from "../../../features/Notes";
+import { useNotesStore } from "../../../features/Notes";
 
 const Home = () => {
   const allTodo = useNotesStore((state) => state.notes);
   const updateNotes = useNotesStore((state) => state.fetchNotesFromDatabase);
   const { width } = useWindowDimensions();
   const router = useRouter();
-  const filter = useFilterStore((state) => state.filter);
-  const search = useSearchStore((state) => state.search);
+  const [isFiltered, setIsFiltered] = useState(false);
 
   useEffect(() => {
     updateNotes(auth.currentUser.email);
@@ -56,15 +51,9 @@ const Home = () => {
 
       {allTodo.length > 0 ? (
         <ScrollView showsVerticalScrollIndicator={false} className="mx-5">
-          {search === ""
-            ? filter === "all"
-              ? allTodo.map((item) => <TodoCard key={item.title} todo={item} />)
-              : allTodo
-                  .filter((item) => item.type === filter)
-                  .map((item) => <TodoCard key={item.title} todo={item} />)
-            : allTodo
-                .filter((item) => item.title.startsWith(search))
-                .map((item) => <TodoCard key={item.title} todo={item} />)}
+          {allTodo.map((item) => (
+            <TodoCard key={item.title} todo={item} />
+          ))}
         </ScrollView>
       ) : (
         <View

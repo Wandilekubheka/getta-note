@@ -12,36 +12,49 @@ import {
 } from "firebase/firestore";
 import { useRouter } from "expo-router";
 import { auth, db } from "../../firebase";
+import { useNotesStore } from "../features/Notes";
+
 const SliceCard = ({ note, main, uid }) => {
   const route = useRouter();
-  const deleteNote = async () => {
-    const docRef = doc(db, auth.currentUser.uid, uid);
 
-    getDoc(docRef).then((doc) => {
-      if (doc.exists()) {
-        if (main) {
-          deleteDoc(docRef).then(() => {
-            const q = query(
-              collection(db, "TodoNotes"),
-              where("time", "==", uid)
-            );
-            onSnapshot(q, (querySnap) => {
-              querySnap.docs.map((doc_) => {
-                deleteDoc(doc_.ref).then(() => route.push("/home"));
-              });
-            });
-          });
-        } else {
-          let data = doc.data();
-          data.subProblem = data.subProblem.filter((value) => value !== note);
-          setDoc(docRef, data);
-        }
-      } else {
-        Alert.alert("Note Not Found");
-        route.replace("/home");
-      }
-    });
-  };
+  getDoc(query(collection(db, "TodoNotes"), where("time", "==", uid)));
+
+  // const q = query(
+  //   collection(db, "TodoNotes"),
+  //   where("team", "==", auth.currentUser.email)
+  // );
+  //   getDoc(docRef).then((doc) => {
+  //     if (doc.exists()) {
+  //       if (main) {
+  //         const docSummaryRef = query(
+  //           collection(db, "TodoNotes"),
+  //           where("time", "==", uid)
+  //         );
+  //         getDoc(docSummaryRef)
+  //           .then((doc_) => console.log(doc_.data()))
+  //           .catch((err) => console.log(err));
+  //         // deleteDoc(docSummaryRef).then(() => route.push("/Home"));
+  //       }
+  //       // deleteDoc(docSummaryRef).then(() => {
+  //       //     alert("deleted");
+  //       //     deleteDoc(docRef)
+  //       //       .then(() => {
+  //       //         console.log("deleted2");
+  //       //         route.back();
+  //       //       })
+  //       //       .catch((err) => Alert.alert(err));
+  //       //   });
+  //       // } else {
+  //       //   let data = doc.data();
+  //       //   data.subProblem = data.subProblem.filter((value) => value !== note);
+  //       //   setDoc(docRef, data);
+  //       // }
+  //     } else {
+  //       Alert.alert("Note Not Found");
+  //       route.replace("/home");
+  //     }
+  //   });
+  // };
   return (
     <ListItem.Swipeable
       containerStyle={styles.container}

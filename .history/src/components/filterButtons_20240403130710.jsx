@@ -11,8 +11,8 @@ const FilterButtons = () => {
 
   useEffect(() => {
     changeFilter(active);
+    console.log(filter);
   }, [active]);
-
   return (
     <View className="flex-row justify-evenly my-8">
       <TouchableOpacity

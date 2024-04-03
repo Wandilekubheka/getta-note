@@ -12,17 +12,14 @@ const useNotesStore = create((set) => ({
   },
 }));
 
-const useFilterStore = create((set) => ({
-  filter: "all",
-  changeFilter: (filterChosen) => {
-    set({ filter: filterChosen });
-  },
-}));
-const useSearchStore = create((set) => ({
-  search: "",
-  changeSearch: (search_) => {
-    set({ search: search_ });
-  },
-}));
 
-export { useNotesStore, useFilterStore, useSearchStore };
+const useFilterStore = create( (set) => ({
+  filter: "all",
+  changeFilter : (filterChosen) =>{
+    set({filter: filterChosen})
+  }
+  }
+
+}))
+
+export { useNotesStore };

@@ -19,7 +19,7 @@ const useFilterStore = create((set) => ({
   },
 }));
 const useSearchStore = create((set) => ({
-  search: "",
+  search: "asd",
   changeSearch: (search_) => {
     set({ search: search_ });
   },

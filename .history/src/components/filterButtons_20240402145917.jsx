@@ -1,18 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import FilterButton from "./filterButton";
-import { useFilterStore } from "../features/Notes";
 
 const FilterButtons = () => {
-  const changeFilter = useFilterStore((state) => state.changeFilter);
-  const filter = useFilterStore((state) => state.filter);
-  const [active, setActive] = useState(filter);
-
-  useEffect(() => {
-    changeFilter(active);
-  }, [active]);
-
+  const [active, setActive] = useState("personal");
   return (
     <View className="flex-row justify-evenly my-8">
       <TouchableOpacity
@@ -43,10 +35,10 @@ const FilterButtons = () => {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
-          if (active === "work") {
+          if (active === "personal") {
             setActive("all");
           } else {
-            setActive("work");
+            setActive("personal");
           }
         }}
       >
@@ -67,16 +59,16 @@ const FilterButtons = () => {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
-          if (active === "team") {
-            setActive("team");
+          if (active === "personal") {
+            setActive("all");
           } else {
-            setActive("team");
+            setActive("personal");
           }
         }}
       >
         <FilterButton
           active={active}
-          name="team"
+          name="work"
           bgcolor={"rgba(54,217,79,0.1)"}
           icon={
             <Ionicons
