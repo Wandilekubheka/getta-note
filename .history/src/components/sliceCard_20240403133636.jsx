@@ -27,12 +27,10 @@ const SliceCard = ({ note, main, uid }) => {
             );
             onSnapshot(q, (querySnap) => {
               const daDoc = querySnap.docs[0];
-              if (daDoc === undefined) {
-                route.back();
+              if (daDoc.exists()) {
+                deleteDoc(daDoc.ref).then(() => route.push("/home"));
               }
-              if (daDoc !== undefined && daDoc.exists()) {
-                deleteDoc(daDoc.ref);
-              }
+              route.push("/home");
             });
           });
         } else {

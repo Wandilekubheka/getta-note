@@ -30,7 +30,7 @@ const SliceCard = ({ note, main, uid }) => {
               if (daDoc === undefined) {
                 route.back();
               }
-              if (daDoc !== undefined && daDoc.exists()) {
+              if (daDoc.exists()) {
                 deleteDoc(daDoc.ref);
               }
             });
