@@ -190,7 +190,7 @@ const AddNote = () => {
                   color: "#5E5E5E",
                 }}
               >
-                {dayjs(deadline).format("YYYY MMMM DD")}
+                {deadline}
               </Text>
             ) : (
               <Text

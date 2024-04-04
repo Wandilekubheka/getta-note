@@ -23,7 +23,7 @@ export default function AuthLayout() {
   return (
     <>
       <StatusBar style="light" />
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack />
     </>
   );
 }

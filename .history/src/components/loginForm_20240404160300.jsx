@@ -44,7 +44,7 @@ const LoginForm = () => {
         title={"Login"}
       />
       <Button
-        onPress={() => router.push("forgotpass")}
+        onPress={router.push("forgotpass")}
         type="clear"
         title={"Forgot Password"}
       />

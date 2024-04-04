@@ -179,7 +179,7 @@ const AddNote = () => {
             Deadline
           </Text>
           <TouchableOpacity
-            onPress={() => setDateTimeToggled(true)}
+            onPress={() => setDateTimeToggled(!dateTimeToggled)}
             className=" py-3 px-5 border border-neutral-500 rounded-md mt-2"
           >
             {deadline ? (
@@ -190,7 +190,7 @@ const AddNote = () => {
                   color: "#5E5E5E",
                 }}
               >
-                {dayjs(deadline).format("YYYY MMMM DD")}
+                {deadline}
               </Text>
             ) : (
               <Text
@@ -208,9 +208,11 @@ const AddNote = () => {
               <RNDateTimePicker
                 onChange={(e) => {
                   if (e.type === "set") {
-                    setDeadline(dayjs(e.nativeEvent.timestamp).format());
+                    setDeadline(
+                      dayjs(e.nativeEvent.timestamp).format("YYYY MMMM DD")
+                    );
+                    setDateTimeToggled(false);
                   }
-                  setDateTimeToggled(false);
                 }}
                 value={new Date()}
               />
@@ -234,7 +236,7 @@ const AddNote = () => {
             placeholder="Add To Do Description"
           />
         </View>
-        <View className="mb-20">
+        <View className="pb-10">
           <Text className=" text-neutral-500" style={{ fontFamily: "Sofia" }}>
             Sub Problem
           </Text>

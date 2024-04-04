@@ -33,7 +33,7 @@ const SliceCard = ({ note, main, uid }) => {
               if (daDoc !== undefined) {
                 deleteDoc(daDoc.ref);
               } else {
-                route.replace("(home)/home");
+                route.replace("/home");
               }
             });
           });

@@ -36,7 +36,7 @@ const Home = () => {
   }, []);
 
   return (
-    <SafeAreaView className="flex-1  bg-stone-950 ">
+    <SafeAreaView className="flex-1 bg-stone-950 ">
       <View>
         <View className="flex-row self-end m-8">
           <TouchableOpacity

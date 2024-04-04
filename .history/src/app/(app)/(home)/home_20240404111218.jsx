@@ -1,12 +1,13 @@
 import {
   Image,
   ScrollView,
+  StyleSheet,
   Text,
   TouchableOpacity,
   View,
   useWindowDimensions,
 } from "react-native";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchInput from "../../../components/searchInput";
 import FilterButtons from "../../../components/filterButtons";
@@ -27,16 +28,14 @@ const Home = () => {
   const router = useRouter();
   const filter = useFilterStore((state) => state.filter);
   const search = useSearchStore((state) => state.search);
-  const image = auth.currentUser.photoURL
-    ? auth.currentUser.photoURL
-    : "https://images.unsplash.com/photo-1710756115964-f949e92b97fb";
+  const [image, setImage] = useState(auth.currentUser.photoURL);
 
   useEffect(() => {
     updateNotes(auth.currentUser.email);
   }, []);
 
   return (
-    <SafeAreaView className="flex-1  bg-stone-950 ">
+    <SafeAreaView className="flex-1 bg-stone-950 ">
       <View>
         <View className="flex-row self-end m-8">
           <TouchableOpacity
@@ -45,7 +44,7 @@ const Home = () => {
           >
             <Image
               style={{ width: 40, height: 40, borderRadius: 999 }}
-              source={{ uri: image }}
+              source={{ uri: auth.currentUser.photoURL }}
             />
           </TouchableOpacity>
         </View>

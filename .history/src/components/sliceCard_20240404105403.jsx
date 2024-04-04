@@ -17,6 +17,7 @@ import { db } from "../../firebase";
 const SliceCard = ({ note, main, uid }) => {
   const route = useRouter();
   const deleteNote = async () => {
+
     const docRef = doc(db, "NotesOverview", uid);
 
     getDoc(docRef).then((doc) => {
@@ -33,7 +34,7 @@ const SliceCard = ({ note, main, uid }) => {
               if (daDoc !== undefined) {
                 deleteDoc(daDoc.ref);
               } else {
-                route.replace("(home)/home");
+                route.back();
               }
             });
           });
@@ -57,7 +58,7 @@ const SliceCard = ({ note, main, uid }) => {
         }
       } else {
         Alert.alert("Note Not Found");
-        route.replace("(home)/home");
+        route.replace("/home");
       }
     });
   };

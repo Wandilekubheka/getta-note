@@ -1,4 +1,4 @@
-import { Stack, useRouter } from "expo-router";
+import { Slot, useRouter } from "expo-router";
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth } from "../../../firebase";
@@ -23,7 +23,7 @@ export default function AuthLayout() {
   return (
     <>
       <StatusBar style="light" />
-      <Stack screenOptions={{ headerShown: false }} />
+      <Slot />
     </>
   );
 }
