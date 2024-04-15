@@ -22,40 +22,75 @@
 ## Folder Structure
 
 GETTA-NOTE/
+
 ├── node_modules/
+
 ├── src/
+
 │   ├── app/
+
 │   │   ├── (home)/
+
 │   │   │   ├── layout.js
+
 │   │   │   ├── addNote.jsx
+
 │   │   │   ├── home.jsx
+
 │   │   │   ├── userProfile.jsx
+
 │   │   │   └── viewNote.jsx
+
 │   │   ├── layout.jsx
+
 │   │   └── index.jsx
+
 │   ├── assets/
+
 │   │   ├── fonts/
+
 │   │   │   ├── IrishGrover-Regular.ttf
+
 │   │   │   ├── SofiaSans-Bold.ttf
+
 │   │   │   ├── SofiaSans-Light.ttf
+
 │   │   │   └── SofiaSans-Regular.ttf
+
 │   │   └── images/
+
 │   │       ├── image.jpg
+
 │   │       ├── logo.png
+
 │   │       └── nonotes.png
+
 │   ├── components/
+
 │   │   ├── deadLinePicker.jsx
+
 │   │   ├── filterButton.jsx
+
 │   │   ├── filterButtons.jsx
+
 │   │   ├── loginForm.jsx
+
 │   │   ├── registerForm.jsx
+
 │   │   ├── searchInput.jsx
+
 │   │   ├── sliceCard.jsx
+
 │   │   └── todoCard.jsx
+
 │   └── features/
+
 │       └── Notes.js
+
 ├── .gitignore
+
 ├── package.json
+
 └── README.md
 
 ## License
