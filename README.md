@@ -21,7 +21,6 @@
 
 ## Folder Structure
 
-
 GETTA-NOTE/
 ├── node_modules/
 ├── src/
@@ -29,7 +28,7 @@ GETTA-NOTE/
 │   │   ├── (home)/
 │   │   │   ├── layout.js
 │   │   │   ├── addNote.jsx
-│   │   │   ├── home.jsx 
+│   │   │   ├── home.jsx
 │   │   │   ├── userProfile.jsx
 │   │   │   └── viewNote.jsx
 │   │   ├── layout.jsx
